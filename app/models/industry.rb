@@ -3,5 +3,5 @@ class Industry < ActiveRecord::Base
   has_many :users, :through => :user_jobs
   has_many :jobs, :through => :user_jobs
 
-  INDUSTRIES = ["Hospitality", "Technology", "Medicine", "Arts", "Government", "Education", "Non-profit", "Finance"]
+  # INDUSTRIES = ["Hospitality", "Technology", "Medicine", "Arts", "Government", "Education", "Non-profit", "Finance"]
 end

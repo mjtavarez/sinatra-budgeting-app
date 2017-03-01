@@ -7,3 +7,4 @@ ActiveRecord::Base.establish_connection(
   )
 
 require_all 'app'
+INDUSTRIES = ["Hospitality", "Technology", "Medicine", "Arts", "Government", "Education", "Non-profit", "Finance"]
