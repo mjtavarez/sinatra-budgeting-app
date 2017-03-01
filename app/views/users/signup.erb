@@ -1,0 +1,57 @@
+<form action="/signup" method="POST">
+  <h3>Sign Up</h3>
+  <br><br>
+
+  <label for="name">Name: </label>
+  <input type="text" name="user[name]" id="name">
+  <br>
+  <label for="email">Email: </label>
+  <input type="email" name="user[email]" id="email">
+  <br>
+  <label for="password">Password: </label>
+  <input type="password" name="user[password]" id="password">
+  <br><br>
+
+
+  <h4>JOBS</h4>
+  <br>
+  <label for="job_1_name">Name: </label>
+  <input type="text" name="jobs[][name]" id="job_1_name">
+  <br>
+  <label for="job_1_salary">Salary: </label>
+  <input type="text" name="jobs[][salary]" id="job_1_salary">
+  <br>
+  <% Industry.all.each do |industry|%>
+    <input type="checkbox" name="jobs[][industry_ids]" value="<%=industry.id%>" id="<%=industry.name%>"> <%=industry.name%>
+  <% end %>
+  <br>
+  <br>
+  <label for="job_2_name">Name: </label>
+  <input type="text" name="jobs[][name]" id="job_1_name">
+  <br>
+  <label for="job_2_salary">Salary: </label>
+  <input type="text" name="jobs[][salary]" id="job_1_salary">
+  <br>
+  <% Industry.all.each do |industry|%>
+    <input type="checkbox" name="jobs[][industry_ids]" value="<%=industry.id%>" id="<%=industry.name%>"><%=industry.name%>
+  <% end %>
+  <br><br>
+
+
+  <h4>ACCOUNTS</h4>
+  <br>
+  <label for="account_1_name">Name: </label>
+  <input type="text" name="accounts[][name]" id="account_1_name">
+  <br>
+  <label for="account_1_balance">Balance: </label>
+  <input type="text" name="accounts[][balance]" id="account_1_balance">
+  <br>
+  <label for="account_1_due_date">Due Date: </label>
+  <input type="text" name="accounts[][due_date]" id="account_1_due_date">
+  <br>
+  <label for="account_1_interest">Interest Rate: </label>
+  <input type="text" name="accounts[][interest]" id="account_1_interest">
+  <br><br>
+  
+  <input type="submit" value="Sign Up">
+</form>
