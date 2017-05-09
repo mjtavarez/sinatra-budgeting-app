@@ -1,13 +1,24 @@
 class UsersController < ApplicationController
     
     get '/users/:id' do
-       @user = User.find(params[:id]) 
-       erb :'/users/show_user'
+        if logged_in?
+            @user = User.find(params[:id]) 
+            erb :'/users/show_user'
+        else
+            erb :'/'
+        end
     end
     
     get '/users/:id/update' do
-        @user = User.find(params[:id])
-        erb :'/users/edit_user'
+        if logged_in? && current_user == params[:id]
+            @user = User.find(params[:id])
+            erb :'/users/edit_user'
+        elsif logged_in?
+            @user = current_user
+            erb :'/users/show_user'
+        else
+            erb :'/users/login'
+        end
     end
     
     patch '/users/:id' do
@@ -33,6 +44,11 @@ class UsersController < ApplicationController
         new_accounts.each{|new_account_hash| @user.accounts << Account.new(name: new_account_hash[:name], balance: new_account_hash[:balance], interest: new_account_hash[:interest], due_date: new_account_hash[:due_date])}
         
         redirect("/users/#{@user.id}")
-            
+    end
+    
+    helpers do
+        def owner?
+            self.user_id == current_user.id
+        end
     end
 end

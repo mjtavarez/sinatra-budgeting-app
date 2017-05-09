@@ -1,0 +1,9 @@
+<h3>Jobs held by all users</h3>
+
+<% Job.all.each do |job|%>
+    <ul>
+        <li>
+            <%=job.name%>
+        </li>
+    </ul>
+<% end %>
