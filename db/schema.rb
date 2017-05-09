@@ -13,11 +13,11 @@
 ActiveRecord::Schema.define(version: 20170301151603) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "due_date"
-    t.integer  "interest"
-    t.integer  "balance"
-    t.integer  "user_id"
+    t.string "name"
+    t.integer "due_date"
+    t.integer "interest"
+    t.integer "balance"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170301151603) do
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.string  "name"
+    t.string "name"
     t.integer "industry_id"
     t.integer "salary"
   end
@@ -38,11 +38,11 @@ ActiveRecord::Schema.define(version: 20170301151603) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

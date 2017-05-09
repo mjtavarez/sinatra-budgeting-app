@@ -20,10 +20,12 @@
   <label for="job_1_salary">Salary: </label>
   <input type="text" name="jobs[][salary]" id="job_1_salary">
   <br>
-  <label for="job_2_industry">Industry: </label><br>
-  <% Industry.all.each do |industry|%>
-    <input type="checkbox" name="jobs[][industry_ids][]" value="<%=industry.id%>" id="<%=industry.name%>"> <%=industry.name%>
-  <% end %>
+  <label for="job_1_industry">Industry: </label>
+  <select name="jobs[][industry_id]">
+    <% Industry.all.each do |industry| %>
+      <option value="<%=industry.id%>"><%=industry.name%></option>
+    <%end%>
+  </select>
   <br>
   <br>
   <label for="job_2_name">Name: </label>
@@ -32,25 +34,27 @@
   <label for="job_2_salary">Salary: </label>
   <input type="text" name="jobs[][salary]" id="job_2_salary">
   <br>
-  <label for="job_2_industry">Industry: </label><br>
-  <% Industry.all.each do |industry|%>
-    <input type="checkbox" name="jobs[][industry_ids][]" value="<%=industry.id%>" id="<%=industry.name%>"><%=industry.name%>
-  <% end %>
+  <label for="job_2_industry"> Industry: </label>
+  <select name="jobs[][industry_id]">
+    <% Industry.all.each do |industry| %>
+      <option value="<%=industry.id%>"><%=industry.name%></option>
+    <%end%>
+  </select>
   <br><br>
 
 
   <h4>ACCOUNTS</h4>
   <label for="account_1_name">Name: </label>
-  <input type="text" name="accounts[][name]" id="account_1_name">
+  <input type="text" name="account[name]" id="account_1_name">
   <br>
   <label for="account_1_balance">Balance: </label>
-  <input type="text" name="accounts[][balance]" id="account_1_balance">
+  <input type="text" name="account[balance]" id="account_1_balance">
   <br>
   <label for="account_1_due_date">Due Date: </label>
-  <input type="text" name="accounts[][due_date]" id="account_1_due_date">
+  <input type="text" name="account[due_date]" id="account_1_due_date">
   <br>
   <label for="account_1_interest">Interest Rate: </label>
-  <input type="text" name="accounts[][interest]" id="account_1_interest">
+  <input type="text" name="account[interest]" id="account_1_interest">
   <br><br>
 
   <input type="submit" value="Sign Up">

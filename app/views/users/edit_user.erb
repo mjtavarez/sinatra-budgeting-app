@@ -1,0 +1,67 @@
+<h1>Add or Edit <%= @user.name %>'s Jobs and Accounts!</h1>
+<form action="/users/<%=@user.id%>" method="post">
+<input type="hidden" name="_method" value="patch">
+<h4>JOBS</h4>
+<br>
+<table>
+    <th>NAME</th>
+    <th>SALARY</th>
+    <th>INDUSTRY</th>
+    <!--<th>DELETE</th>-->
+    <% @user.jobs.each do |job| %>
+        <tr>
+            <td><input type="text" name="user[jobs][][name]" value="<%=job.name%>"></input></td>
+            <td><input type="text" name="user[jobs][][salary]" value="<%=job.salary%>"></input></td>
+            <td><select name="user[jobs][][industry_id]" value="<%=job.industry.name%>">
+                <%Industry.all.each do |industry|%>
+                    <option value="<%=industry.id%>" <%="selected" if job.industry.id == industry.id%>><%=industry.name%></option>
+                <% end %>
+                </select>
+            </td>
+            <!--<td><form action="/jobs/<%=job.id%>/delete" method="post"><input type="checkbox" unchecked value="<%=job.id%>" name="delete_jobs[]"></input></form></td>-->
+            <input type="hidden" name="user[jobs][][id]" value="<%=job.id%>"></input>
+        </tr>
+    <% end %>
+        <tr>
+            <td><input type="text" name="user[jobs][][name]"></input></td>
+            <td><input type="text" name="user[jobs][][salary]"></input></td>
+            <td><select name="user[jobs][][industry_id]">
+                <%Industry.all.each do |industry|%>
+                    <option value="<%=industry.id%>"><%=industry.name%></option>
+                <% end %>
+                </select>
+            </td>
+        </tr>
+</table>
+
+<br>
+
+<h4>ACCOUNTS</h4>
+<br>
+<table border="1" style="text-align: left;">
+    <th>NAME</th>
+    <th>BALANCE</th>
+    <th>DUE DATE</th>
+    <th>INTEREST</th>
+    <!--<td>DELETE</td>-->
+    <% @user.accounts.each do |account| %>
+        <tr>
+            <td><input type="text" name="user[accounts][][name]" value="<%=account.name%>"></input></td>
+            <td><input type="text" name="user[accounts][][balance]" value="<%=account.balance%>"></input></td>
+            <td><input type="text" name="user[accounts][][due_date]" value="<%=account.due_date%>"></input></td>
+            <td><input type="text" name="user[accounts][]interest]" value="<%=account.interest%>"></input></td>
+            <!--<td><form action="/accounts/<%=account.id%>/delete" method="post"><input type="checkbox" unchecked value="<%=account.id%>" name="delete_accounts[]"></input></form></td>-->
+            <input type="hidden" name="user[accounts][][id]" value="<%=account.id%>"></input>
+        </tr>
+    <% end %>
+        <tr>
+            <td><input type="text" name="user[accounts][][name]"></input></td>
+            <td><input type="text" name="user[accounts][][balance]"></input></td>
+            <td><input type="text" name="user[accounts][][due_date]"></input></td>
+            <td><input type="text" name="user[accounts][][interest]"></input></td>
+        </tr>
+</table>
+<br>
+<input type="submit" value="Save"></input>
+</form>
+<br></br>

@@ -7,4 +7,8 @@ ActiveRecord::Base.establish_connection(
   )
 
 require_all 'app'
+
+# $: << File.expand_path('../', __FILE__)
+# Dir['./app/**/*.rb'].sort.each{|file| require file}
+
 INDUSTRIES = ["Hospitality", "Technology", "Medicine", "Arts", "Government", "Education", "Non-profit", "Finance"]
