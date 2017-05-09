@@ -5,7 +5,7 @@ class UsersController < ApplicationController
             @user = User.find(params[:id]) 
             erb :'/users/show_user'
         else
-            erb :'/'
+            redirect("/")
         end
     end
     
