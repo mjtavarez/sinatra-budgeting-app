@@ -1,0 +1,13 @@
+<h1><%=@industry.name.capitalize%></h1>
+
+<h3>JOBS</h3>
+<% Job.where(industry_id: @industry.id).each do |job|%>
+    <ul>
+        <li>
+            <%=job.name%>
+        </li>
+    </ul>
+<% end %>
+<br>
+<a href="/industries">Back to Industries</a>
+<br>

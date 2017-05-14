@@ -45,9 +45,8 @@ class ApplicationController < Sinatra::Base
     params[:jobs].each do |job_hash|
       job = Job.find_or_create_by(name: job_hash[:name].downcase)
       
-      # user_job.update(salary: job_hash[:salary], industry_id: job_hash[:industry_id])
       @user.jobs << job
-      UserJob.last.update(salary: job_hash[:salary], industry_id: job_hash[:industry_id])
+      UserJob.last.job.update(salary: job_hash[:salary], industry_id: job_hash[:industry_id])
     end
     
     if !params[:account].value?("")

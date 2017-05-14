@@ -1,0 +1,8 @@
+<h3>Industries</h3>
+<% Industry.all.each do |industry|%>
+<ul>
+    <li>
+        <a href="/industries/<%=industry.id%>"><%=industry.name%></a>
+    </li>
+</ul>
+<% end %>

@@ -52,13 +52,13 @@ class AccountsController < ApplicationController
         end
     end
     
-
-    
     post '/accounts/:id/delete' do
         @account = Account.find(params[:id])
-        if session[:user_id] == @account.user_id
+        if current_user == @account.user
             @account.destroy
-            redirect("/users/#{@account.user.id}")
+            redirect to("/users/#{@account.user.id}")
+        elsif logged_in?
+            redirect to("/users/#{current_user.id}")
         else
             redirect to("/")
         end
