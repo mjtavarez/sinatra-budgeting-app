@@ -1,0 +1,13 @@
+<h1><%=@user_job.job.name%></h1>
+<ul>
+    <li>Salary: <%=@user_job.job.salary%></li>
+    <li>Industry: <%=@user_job.job.industry.name%></li>
+</ul>
+
+<a href="/jobs/<%=@user_job.id%>/edit">Update Job</a>
+<br>
+<a href="/jobs/new"%>Add new job</a>
+<br>
+<a href="/users/<%=@user_job.user.id%>">Back to <%=@user_job.user.name%>'s Profile</a>
+<br>
+<br>

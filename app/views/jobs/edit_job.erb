@@ -1,0 +1,17 @@
+<form action="/jobs/<%=@user_job.id%>" method="post">
+    <input type="hidden" name="_method" value="PATCH"></input>
+    Job Name: <input type="text" name="user_job[name]" value="<%=@user_job.job.name%>"></input>
+    <ul>
+        <li>Salary: <input type="text" name="user_job[salary]" value="<%=@user_job.job.salary%>"></input></li>
+        <li>Industry: <select name="user_job[industry_id]">
+            <% Industry.all.each do |industry| %>
+                <option value="<%=industry.id%>"><%=industry.name%></option>
+            <% end %>
+        </select></li>
+    </ul>
+    <input type="submit" value="Save"></input>
+    <br>
+    <br>
+    <a href="/users/<%=@user_job.user.id%>">Back to <%=@user_job.user.name%>'s Profile</a>
+    <br>
+</form>

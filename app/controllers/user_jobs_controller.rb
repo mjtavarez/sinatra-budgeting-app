@@ -1,6 +1,6 @@
 class UserJobsController < ApplicationController
     
-    get '/' do
+    get '/user_jobs' do
         if logged_in?
             @user = current_user
             erb :'/user_jobs/index.erb'

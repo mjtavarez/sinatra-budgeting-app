@@ -1,0 +1,12 @@
+<h1><%=@account.name.capitalize%></h1>
+<ul>
+    <li>Balance: <%=@account.balance%></li>
+    <li>Due Date: <%=@account.due_date%></li>
+    <li>Interest: <%=@account.interest%></li>
+</ul>
+
+<a href="/accounts/<%=@account.id%>/edit">Update Account</a>
+<br>
+<a href="/users/<%=@account.user_id%>">Back to <%=@account.user.name%>'s Profile</a>
+<br>
+<br>

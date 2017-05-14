@@ -67,6 +67,8 @@ GEM
       sinatra (>= 1.2.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
+    validates_email_format_of (1.6.3)
+      i18n
 
 PLATFORMS
   ruby
@@ -83,6 +85,7 @@ DEPENDENCIES
   sqlite3
   thin
   tux
+  validates_email_format_of
 
 BUNDLED WITH
    1.14.6

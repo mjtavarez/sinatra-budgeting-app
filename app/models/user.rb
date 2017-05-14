@@ -4,7 +4,11 @@ class User < ActiveRecord::Base
   has_many :accounts
   has_secure_password
   
-  validates :name, presence: true, format: {with: /\A[a-zA-Z]+\b[a-zA-Z]+\z/}
-  validates :email, presence: true, format: {with: /\A[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+\z/}
-  validates :password, presence: true
+  
+  #name validator requires a first AND last name
+  validates :name, presence: true, format: {with: /\A\b[a-zA-Z]+\b\s\b[a-zA-Z]+\b\z/}
+  
+  #other validators work just as expected
+  validates :email, email_format: {message: "this doesn't seem to be an email"}
+  validates :password, presence: true, length: {minimum: 6}
 end

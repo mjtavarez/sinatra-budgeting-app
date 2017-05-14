@@ -1,39 +1,25 @@
 <h1>Welcome, <%= @user.name %>!</h1>
 
 <h4>JOBS</h4>
-<table border="1" style="text-align: left;">
+<table border="0" style="text-align: left;">
     <tr>
         <th>NAME</th>
-        <th>SALARY</th>
-        <th>INDUSTRY</th>
     </tr>
-    <% @user.jobs.each do |job| %>
+    <% UserJob.where(user_id: @user.id).each do |user_job|%>    
         <tr>
-            <td><%=job.name%></td>
-            <td><%=job.salary%></td>
-            <td><%=job.industry.name%></td>
+            <td><a href="/jobs/<%=user_job.id%>"><%=user_job.job.name%></a></td>
         </tr>    
     <% end %>
     
 </table>
 
 <h4>ACCOUNTS</h4>
-<table border="1" style="text-align: left;">
+<table border="0" style="text-align: left;">
     <th>NAME</th>
-    <th>BALANCE</th>
-    <th>DUE DATE</th>
-    <th>INTEREST</th>
     <% @user.accounts.each do |account| %>
         <tr>
-            <td><%=account.name%></td>
-            <td><%=account.balance%></td>
-            <td><%=account.due_date%></td>
-            <td><%=account.interest%></td>
+            <td><a href="/accounts/<%=account.id%>"><%=account.name%></a></td>
         </tr>
     <% end %>
 </table>
 <br>
-<% if session[:user_id] == @user.id%>
-    <a href="/users/<%=@user.id%>/update">Update Profile</a>
-<% end %>
-<br></br>

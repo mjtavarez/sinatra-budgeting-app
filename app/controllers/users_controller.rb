@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
     
     get '/users/:id/update' do
-        if logged_in? && current_user == params[:id]
+        if logged_in? && session[:user_id] == params[:id]
             @user = User.find(params[:id])
             erb :'/users/edit_user'
         elsif logged_in?
@@ -44,11 +44,5 @@ class UsersController < ApplicationController
         new_accounts.each{|new_account_hash| @user.accounts << Account.new(name: new_account_hash[:name], balance: new_account_hash[:balance], interest: new_account_hash[:interest], due_date: new_account_hash[:due_date])}
         
         redirect("/users/#{@user.id}")
-    end
-    
-    helpers do
-        def owner?
-            self.user_id == current_user.id
-        end
     end
 end

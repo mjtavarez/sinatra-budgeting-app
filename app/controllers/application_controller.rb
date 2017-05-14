@@ -38,32 +38,26 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    if params[:user][:email] == "" || params[:user][:password] == "" || params[:user][:name] == ""
-      redirect("/signup")
+    @user = User.create(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
+    # @user.save
+    params[:jobs].delete_if{|job_hash| job_hash.value?("")}
+
+    params[:jobs].each do |job_hash|
+      @user.jobs << Job.create(name: job_hash[:name], salary: job_hash[:salary], industry_id: job_hash[:industry_id])
+    end
     
-    else
-      @user = User.new(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
-
-      params[:jobs].delete_if{|job_hash| job_hash.value?("")}
-
-      params[:jobs].each do |job_hash|
-        @user.jobs << Job.create(name: job_hash[:name], salary: job_hash[:salary], industry_id: job_hash[:industry_id])
-      end
-      
+    if !params[:account].value?("")
       account = Account.create(params[:account])
       @user.accounts << account
-      
-      @user.save
+    end
+    
+    if @user.save
       session[:user_id] = @user.id
-      redirect("/users/#{@user.id}")
+      redirect to("/users/#{@user.id}")
+    else
+      erb :"/users/signup"
     end
   end
-  
-  # post '/users/:id' do
-  #   @user = User.find_by(params[:id])
-  #   @user.update(params)
-  #   erb :'/show_user'
-  # end
   
   get '/logout' do
     session.clear
