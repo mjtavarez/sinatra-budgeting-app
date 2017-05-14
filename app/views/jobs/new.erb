@@ -1,0 +1,13 @@
+<h2>Add New Job</h2>
+<form action="/jobs" method="POST">
+    <label for="job_name">Job Name: </label><input type="text" name="job[name]" id="job_name"></input><br>
+    <label for="job_salary">Salary: </label><input type="text" name="job[salary]" id="job_salary"></input><br>
+    Industry: <select name="job[industry_id]">
+        <% Industry.all.each do |industry|%>
+            <option value="<%=industry.id%>"><%=industry.name%></option>
+        <% end %>
+    </select>
+    <br>
+    <br>
+    <input type="submit" value="Save">
+</form>

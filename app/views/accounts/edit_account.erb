@@ -1,0 +1,13 @@
+<h2>Edit account</h2>
+<form action="/accounts/<%=@account.id%>" method="post">
+    <input type="hidden" name="_method" value="PATCH">
+    Name: <input type="text" name="name" value="<%=@account.name.capitalize%>"></input><br>
+    Balance: <input type="text" name="balance" value="<%=@account.balance%>"></input><br>
+    Due Date: <input type="text" name="due_date" value="<%=@account.due_date%>"></input><br>
+    Interest: <input type="text" name="interest" value="<%=@account.interest%>"></input><br>
+<br>
+<input type="submit" value="Save">
+</form>
+<form action="/accounts/<%=@account.id%>/delete" method="post">
+    <input type="submit" value="Delete Account">
+</form>

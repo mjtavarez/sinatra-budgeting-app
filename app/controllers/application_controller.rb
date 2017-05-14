@@ -39,11 +39,15 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do
     @user = User.create(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
-    # @user.save
+    
     params[:jobs].delete_if{|job_hash| job_hash.value?("")}
 
     params[:jobs].each do |job_hash|
-      @user.jobs << Job.create(name: job_hash[:name], salary: job_hash[:salary], industry_id: job_hash[:industry_id])
+      job = Job.find_or_create_by(name: job_hash[:name].downcase)
+      
+      # user_job.update(salary: job_hash[:salary], industry_id: job_hash[:industry_id])
+      @user.jobs << job
+      UserJob.last.update(salary: job_hash[:salary], industry_id: job_hash[:industry_id])
     end
     
     if !params[:account].value?("")

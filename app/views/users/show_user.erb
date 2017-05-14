@@ -1,7 +1,7 @@
 <h1>Welcome, <%= @user.name %>!</h1>
 
 <h4>JOBS</h4>
-<table border="0" style="text-align: left;">
+<table border="1" style="text-align: left;">
     <tr>
         <th>NAME</th>
     </tr>
@@ -12,9 +12,11 @@
     <% end %>
     
 </table>
+<br>
+<a href="/jobs/new">Add job</a>
 
 <h4>ACCOUNTS</h4>
-<table border="0" style="text-align: left;">
+<table border="1" style="text-align: left;">
     <th>NAME</th>
     <% @user.accounts.each do |account| %>
         <tr>
@@ -22,4 +24,6 @@
         </tr>
     <% end %>
 </table>
+<br>
+<a href="/accounts/new">Add account</a>
 <br>

@@ -1,0 +1,9 @@
+<h3>Accounts held by all users</h3>
+
+<% Account.all.each do |account|%>
+    <ul>
+        <li>
+            <%=account.name%>
+        </li>
+    </ul>
+<%end%>

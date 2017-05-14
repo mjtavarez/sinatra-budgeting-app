@@ -1,15 +1,9 @@
 <h3>Jobs held by all users</h3>
 
-<% job_names = Job.all.collect do |job|%>
-    <%job.name%>
-<% end %>
-<%= job_names%>
-<% job_names = job_names.uniq %>
-<%= job_names%>
-<% job_names.each do |job_name|%>
+<% Job.all.each do |job|%>
     <ul>
         <li>
-            <%=job_name%>
+            <%=job.name%>
         </li>
     </ul>
 <% end %>

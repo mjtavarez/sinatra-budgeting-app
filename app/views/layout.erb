@@ -2,6 +2,9 @@
 
 <%= yield %>
 
+
 <% if !!session[:user_id]%>
+    <a href="/users/<%=session[:user_id]%>">Back to <%=User.find(session[:user_id]).name%>'s profile</a>
+    <br>
     <a href="/logout">Logout</a>
 <% end %>

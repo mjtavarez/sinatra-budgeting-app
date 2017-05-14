@@ -7,6 +7,7 @@
 
 <a href="/accounts/<%=@account.id%>/edit">Update Account</a>
 <br>
-<a href="/users/<%=@account.user_id%>">Back to <%=@account.user.name%>'s Profile</a>
 <br>
-<br>
+<form action="/accounts/<%=@account.id%>/delete" method="post">
+    <input type="submit" value="Delete Account">
+</form>

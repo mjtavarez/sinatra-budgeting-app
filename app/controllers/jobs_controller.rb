@@ -1,17 +1,16 @@
 class JobsController < ApplicationController
     
     get '/jobs' do
-        erb :'/jobs/index'
+        if logged_in?
+            erb :'/jobs/index'
+        else
+            redirect to("/")
+        end
     end
     
     get '/jobs/new' do
-        # do I need to check that current_user is owner?
-        # how do I ensure that users only add jobs to their own profiles
-        
-        # TEST: login as one user and see if you can add new job on different user's profile
-        
         if logged_in?
-            erb :'/jobs/create_job'
+            erb :'/jobs/new'
         else
             redirect to("/")
         end
@@ -35,33 +34,39 @@ class JobsController < ApplicationController
         if current_user == @user_job.user
             erb :'/jobs/edit_job' 
         elsif logged_in?
-            redirect to("/users/#{session[:user_id]}")
+            redirect to("/users/#{current_user.id}")
         else
             redirect to("/")
         end
     end
     
-    # post '/jobs/:id' do
+    post '/jobs' do
+        job_name = params[:job][:name]
         
-    # end
+        if job_name != "" && params[:job][:salary] != ""
+            user_job = Job.find_or_create_by(name: job_name)
+            user_job.update(salary: params[:job][:salary], industry_id: params[:job][:industry_id])
+            current_user.jobs << user_job
+            redirect to("/users/#{current_user.id}")
+        else
+            redirect to("/jobs/new")
+        end
+    end
     
     patch '/jobs/:id' do
         @user_job = UserJob.find(params[:id])
         
-        if params[:user_job][:name] != ""
+        if params[:user_job][:name] != "" && params[:user_job][:salary] != ""
             @user_job.job.update(name: params[:user_job][:name], salary: params[:user_job][:salary], industry_id: params[:user_job][:industry_id])
             @user_job.save
-            redirect to("/users/#{@user_job.user_id}")
+            redirect to("/jobs/#{@user_job.id}")
         else
             redirect to("/jobs/#{@user_job.id}/edit")
         end
     end
     
     post '/jobs/:id/delete' do
-        # user_jobs = UserJob.where(params[:]).destroy_all
-        # raise user_jobs.inspect
-        # raise params.inspect
-        # @user = User.find(user_jobs.user_id)
-        # redirect("/users/#{@user.id}")
+        user_job = UserJob.find(params[:id]).destroy
+        redirect("/users/#{user_job.user_id}")
     end
 end
